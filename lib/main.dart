@@ -11,6 +11,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo - Calc',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.white,
+          shape: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+        ),
       ),
       home: Calc(title: 'Flutter Calc'),
     );
@@ -104,11 +110,14 @@ class _CalcState extends State<Calc> {
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 400.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               Text(
-                '$_view',
+                (_view.toString().length > 10
+                    ? _view.toString().substring(0, 10)
+                    : _view.toString()),
                 style: Theme.of(context).textTheme.headline2,
+                textAlign: TextAlign.right,
               ),
               Expanded(
                 child: GridView.count(
@@ -117,67 +126,71 @@ class _CalcState extends State<Calc> {
                   mainAxisSpacing: 4.0,
                   padding: const EdgeInsets.all(16),
                   children: [
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetNum(7),
                         child: Text('7',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetNum(8),
                         child: Text('8',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetNum(9),
                         child: Text('9',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetMode('/'),
                         child: Text('/',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetNum(4),
                         child: Text('4',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetNum(5),
                         child: Text('5',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetNum(6),
                         child: Text('6',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetMode('*'),
                         child: Text('*',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetNum(1),
                         child: Text('1',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetNum(2),
                         child: Text('2',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetNum(3),
                         child: Text('3',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetMode('-'),
                         child: Text('-',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: _handleClear,
                         child: Text('C',
-                            style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                            style: Theme.of(context).textTheme.headline3.merge(
+                                  TextStyle(
+                                    color: Colors.red,
+                                  ),
+                                ))),
+                    RaisedButton(
                         onPressed: () => _handleSetNum(0),
                         child: Text('0',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetMode('='),
                         child: Text('=',
                             style: Theme.of(context).textTheme.headline3)),
-                    FlatButton(
+                    RaisedButton(
                         onPressed: () => _handleSetMode('+'),
                         child: Text('+',
                             style: Theme.of(context).textTheme.headline3)),
