@@ -113,9 +113,10 @@ class _CalcState extends State<Calc> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               Text(
-                (_view.toString().length > 10
-                    ? _view.toString().substring(0, 10)
-                    : _view.toString()),
+                '$_view',
+                // (_view.toString().length > 10
+                //     ? _view.toString().substring(0, 10)
+                //     : _view.toString()),
                 style: Theme.of(context).textTheme.headline2,
                 textAlign: TextAlign.right,
               ),
